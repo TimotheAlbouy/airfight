@@ -1,7 +1,10 @@
 #include "game.h"
 
-Game::Game() {
-    //
+#include "plane.h"
+
+Game::Game()
+{
+    QGraphicsItem *place = new Plane();
 }
 
 /*

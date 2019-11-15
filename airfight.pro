@@ -16,7 +16,8 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     game.cpp \
     turret.cpp \
-    projectile.cpp
+    projectile.cpp \
+    plane.cpp
 
 HEADERS  += mainwindow.h \
     game.h \
@@ -24,6 +25,7 @@ HEADERS  += mainwindow.h \
     movingactor.h \
     shootingactor.h \
     turret.h \
-    projectile.h
+    projectile.h \
+    plane.h
 
 FORMS    += mainwindow.ui

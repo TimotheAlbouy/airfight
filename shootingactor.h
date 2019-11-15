@@ -9,7 +9,7 @@ private:
     float shootingRate;
     float shootingSpeed;
 public:
-    void shoot();
+    virtual void shoot() = 0;
 };
 
 #endif // SHOOTINGACTOR_H

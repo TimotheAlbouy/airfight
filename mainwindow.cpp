@@ -11,4 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
+    //Game *game = new Game();
+
+    //QGraphicsView *view = new QGraphicsView(this);
+    //view->setGeometry(QRect(50, 50, 400, 200));
+    //view->show();
 }

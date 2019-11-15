@@ -1,9 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <QGraphicsView>
+#include <QGraphicsScene>
 
-class Game : QGraphicsView
+class Game : public QGraphicsScene
 {
 private:
     int width;
