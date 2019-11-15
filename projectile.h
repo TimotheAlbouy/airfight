@@ -7,6 +7,7 @@ class Projectile : MovingActor
 {
 public:
     Projectile();
+    void tick();
 };
 
 #endif // PROJECTILE_H

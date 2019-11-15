@@ -5,6 +5,8 @@
 
 class Turret : ShootingActor
 {
+public:
+    void shoot();
 };
 
 #endif // TURRET_H
