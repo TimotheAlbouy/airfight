@@ -3,11 +3,11 @@
 
 #include "actor.h"
 
-class MovingActor : Actor
+class MovingActor : public Actor
 {
 private:
-    float movingSpeed;
-    float directionAngle;
+    const float movingSpeed = 5;
+    const float steeringSpeed = 5;
 public:
     virtual void move() = 0;
 };

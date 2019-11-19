@@ -13,13 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     game.cpp \
     turret.cpp \
     projectile.cpp \
     plane.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     game.h \
     actor.h \
     movingactor.h \
@@ -29,3 +28,5 @@ HEADERS  += mainwindow.h \
     plane.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES = application.qrc

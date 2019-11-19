@@ -3,11 +3,12 @@
 
 #include "movingactor.h"
 
-class Plane : MovingActor
+class Plane : public MovingActor
 {
 public:
-    Plane();
+    Plane(QPixmap map);
     void move();
+    //void operator += (float a);
 };
 
 #endif // PLANE_H

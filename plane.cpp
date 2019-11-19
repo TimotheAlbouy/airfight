@@ -1,10 +1,12 @@
 #include "plane.h"
 
-Plane::Plane()
+Plane::Plane(QPixmap map)
 {
-
+    //
 }
 
-Plane::move() {
+void Plane::move() {
+    QPointF pos = pos();
 
+    //setPos();
 }

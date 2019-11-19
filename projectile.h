@@ -3,7 +3,7 @@
 
 #include "movingactor.h"
 
-class Projectile : MovingActor
+class Projectile : public MovingActor
 {
 public:
     Projectile();

@@ -3,7 +3,7 @@
 
 #include "shootingactor.h"
 
-class Turret : ShootingActor
+class Turret : public ShootingActor
 {
 public:
     void shoot();

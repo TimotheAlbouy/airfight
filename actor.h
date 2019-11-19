@@ -1,17 +1,13 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 
-class Actor : QGraphicsItem
+class Actor : public QGraphicsPixmapItem
 {
-private:
-    int x;
-    int y;
-    int width;
-    int height;
 public:
-    virtual void tick() = 0;
+    Actor
+    void tick();
 };
 
 #endif // ACTOR_H
