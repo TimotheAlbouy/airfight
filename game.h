@@ -3,18 +3,20 @@
 
 #include <QGraphicsScene>
 
-#include "plane.h"
+#include "playerplane.h"
 
 class Game : public QGraphicsScene
 {
+    Q_OBJECT
 private:
     int width;
     int height;
     QTimer *timer;
-    Plane *player;
+    PlayerPlane *player;
 
 public:
     Game();
+    void setPlayerFocus();
     //void initialize();
     //void run();
 

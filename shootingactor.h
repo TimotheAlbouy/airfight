@@ -3,13 +3,17 @@
 
 #include "actor.h"
 
-class ShootingActor : public Actor
+class ShootingActor : virtual public Actor
 {
 private:
-    const float shootingRate = 5;
-    const float projectileSpeed = 5;
+    float shootingRate = 5;
+    float projectileSpeed = 5;
 public:
-    ShootingActor(QPixmap map) : QGraphicsPixmapItem(map) { };
+    ShootingActor(QPixmap map, float sr=5, float ps=5) : Actor(map) {
+        shootingRate = sr;
+        projectileSpeed = ps;
+    };
+    void tick() { shoot(); };
     virtual void shoot() = 0;
 };
 

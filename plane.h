@@ -6,9 +6,7 @@
 class Plane : public MovingActor
 {
 public:
-    Plane(QPixmap map);
-    void move();
-    //void operator += (float a);
+    Plane(QPixmap map) : Actor(map), MovingActor(map) { };
 };
 
 #endif // PLANE_H

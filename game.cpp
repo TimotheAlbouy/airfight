@@ -1,7 +1,8 @@
 #include <QTimer>
 
 #include "game.h"
-#include "plane.h"
+#include "playerplane.h"
+#include <QDebug>
 
 Game::Game()
 {
@@ -9,12 +10,14 @@ Game::Game()
 
     connect(timer, SIGNAL(timeout()), this, SLOT(tick()));
 
-    QPixmap pixmap1(":/res/plane1.png");
-    pixmap1.scaled(QSize(64, 64));
-    player = new Plane(pixmap1);
+    QPixmap playerMap(":/res/player-plane.png");
+    //QPixmap playerMap(":/res/black-box.png");
+    playerMap.scaled(QSize(64, 64));
+    player = new PlayerPlane(playerMap);
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
     this->addItem(player);
 
-    timer->start(1000);
+    timer->start(25);
 }
 
 /*
@@ -27,5 +30,9 @@ Game::run() {
 }*/
 
 void Game::tick() {
-    //
+    player->tick();
+}
+
+void Game::setPlayerFocus() {
+    player->setFocus();
 }

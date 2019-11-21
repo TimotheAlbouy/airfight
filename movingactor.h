@@ -3,12 +3,17 @@
 
 #include "actor.h"
 
-class MovingActor : public Actor
+class MovingActor : virtual public Actor
 {
-private:
-    const float movingSpeed = 5;
-    const float steeringSpeed = 5;
+protected:
+    float movingSpeed = 5;
+    float steeringSpeed = 5;
 public:
+    MovingActor(QPixmap map, float ms=5, float ss=5) : Actor(map) {
+        movingSpeed = ms;
+        steeringSpeed = ss;
+    };
+    void tick() { move(); };
     virtual void move() = 0;
 };
 

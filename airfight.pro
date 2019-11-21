@@ -16,7 +16,8 @@ SOURCES += main.cpp\
     game.cpp \
     turret.cpp \
     projectile.cpp \
-    plane.cpp
+    playerplane.cpp \
+    enemyplane.cpp
 
 HEADERS  += \
     game.h \
@@ -25,8 +26,13 @@ HEADERS  += \
     shootingactor.h \
     turret.h \
     projectile.h \
-    plane.h
+    plane.h \
+    playerplane.h \
+    shootingplane.h \
+    enemyplane.h
 
 FORMS    += mainwindow.ui
 
 RESOURCES = application.qrc
+
+CONFIG += console

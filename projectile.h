@@ -6,7 +6,7 @@
 class Projectile : public MovingActor
 {
 public:
-    Projectile();
+    Projectile(QPixmap map) : Actor(map), MovingActor(map) { };
     void tick();
 };
 

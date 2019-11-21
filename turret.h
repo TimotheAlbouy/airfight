@@ -6,6 +6,7 @@
 class Turret : public ShootingActor
 {
 public:
+    Turret(QPixmap map);
     void shoot();
 };
 
