@@ -6,14 +6,16 @@
 class ShootingActor : virtual public Actor
 {
 private:
-    float shootingRate = 5;
-    float projectileSpeed = 5;
+    float shootingRate;
+    float projectileSpeed;
 public:
     ShootingActor(QPixmap map, float sr=5, float ps=5) : Actor(map) {
         shootingRate = sr;
         projectileSpeed = ps;
     };
-    void tick() { shoot(); };
+    void tick() {
+        shoot();
+    };
     virtual void shoot() = 0;
 };
 

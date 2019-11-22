@@ -13,6 +13,7 @@ private:
     int height;
     QTimer *timer;
     PlayerPlane *player;
+    std::vector<Actor*> actors;
 
 public:
     Game();

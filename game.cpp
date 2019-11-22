@@ -2,6 +2,7 @@
 
 #include "game.h"
 #include "playerplane.h"
+#include "enemyplane.h"
 #include <QDebug>
 
 Game::Game()
@@ -12,10 +13,19 @@ Game::Game()
 
     QPixmap playerMap(":/res/player-plane.png");
     //QPixmap playerMap(":/res/black-box.png");
-    playerMap.scaled(QSize(64, 64));
+    playerMap = playerMap.scaled(128, 128, Qt::KeepAspectRatio);
     player = new PlayerPlane(playerMap);
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     this->addItem(player);
+    actors.push_back(player);
+
+    QPixmap enemyMap(":/res/black-box.png");
+    enemyMap = enemyMap.scaled(64, 64, Qt::KeepAspectRatio);
+    for (int i = 0; i < 3; i++) {
+        EnemyPlane *enemy = new EnemyPlane(enemyMap);
+        //this->addItem(enemy);
+        //actors.push_back(enemy);
+    }
 
     timer->start(25);
 }
@@ -30,7 +40,8 @@ Game::run() {
 }*/
 
 void Game::tick() {
-    player->tick();
+    for (auto &actor : actors)
+        actor->tick();
 }
 
 void Game::setPlayerFocus() {

@@ -6,10 +6,10 @@
 class MovingActor : virtual public Actor
 {
 protected:
-    float movingSpeed = 5;
-    float steeringSpeed = 5;
+    float movingSpeed;
+    float steeringSpeed;
 public:
-    MovingActor(QPixmap map, float ms=5, float ss=5) : Actor(map) {
+    MovingActor(QPixmap map, float ms=5, float ss=3) : Actor(map) {
         movingSpeed = ms;
         steeringSpeed = ss;
     };

@@ -4,15 +4,16 @@
 
 void PlayerPlane::move()
 {
-    //qDebug() << "hallo";
-    Plane::setTransformOriginPoint(Plane::boundingRect().center());
-    QTransform t = Plane::transform();
+    QTransform t = Actor::transform();
+    QRectF rect = Actor::boundingRect();
+    t.translate(rect.width()/2, rect.height()/2);
     if (isRightPressed())
-        t = t.rotate(steeringSpeed);
+        t.rotate(steeringSpeed);
     if (isLeftPressed())
-        t = t.rotate(-steeringSpeed);
-    Plane::setTransform(t.translate(0, -movingSpeed));
-    //Plane::setTransform(t.translate(0, -0.5));
+        t.rotate(-steeringSpeed);
+    t.translate(-rect.width()/2, -rect.height()/2);
+    t.translate(0, -movingSpeed);
+    Actor::setTransform(t);
 }
 
 void PlayerPlane::shoot()
@@ -23,17 +24,29 @@ void PlayerPlane::shoot()
 void PlayerPlane::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
-        case Qt::Key_Left : leftPressed = true; break;
-        case Qt::Key_Right : rightPressed = true; break;
-        case Qt::Key_Up : upPressed = true; break;
+        case Qt::Key_Left :
+            leftPressed = true;
+            break;
+        case Qt::Key_Right :
+            rightPressed = true;
+            break;
+        case Qt::Key_Up :
+            upPressed = true;
+            break;
     }
 }
 
 void PlayerPlane::keyReleaseEvent(QKeyEvent *event)
 {
     switch (event->key()) {
-        case Qt::Key_Left : leftPressed = false; break;
-        case Qt::Key_Right : rightPressed = false; break;
-        case Qt::Key_Up : upPressed = false; break;
+        case Qt::Key_Left :
+            leftPressed = false;
+            break;
+        case Qt::Key_Right :
+            rightPressed = false;
+            break;
+        case Qt::Key_Up :
+            upPressed = false;
+            break;
     }
 }

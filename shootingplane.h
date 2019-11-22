@@ -12,6 +12,7 @@ public:
     void tick() {
         move();
         shoot();
+        checkIfOutOfBounds();
     };
 };
 
