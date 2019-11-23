@@ -6,8 +6,9 @@
 class EnemyPlane : public Plane
 {
 public:
-    EnemyPlane(QPixmap map) : Actor(map), Plane(map) { };
-    void move();
+    EnemyPlane(QPixmap pm) : Actor(pm), Plane(pm) { }
+    bool wantToGoRight();
+    bool wantToGoLeft();
     //void operator += (float a);
 };
 

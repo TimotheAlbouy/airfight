@@ -1,5 +1,8 @@
 #include "projectile.h"
 
-void Projectile::tick() {
-    //
+void Projectile::move()
+{
+    QTransform t = Actor::transform();
+    //t.translate(-movingSpeed, 0);
+    setTransform(t);
 }

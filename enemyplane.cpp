@@ -1,6 +1,9 @@
 #include "enemyplane.h"
 
-void EnemyPlane::move()
-{
-    setTransform(transform().translate(0, -movingSpeed));
+bool EnemyPlane::wantToGoRight() {
+    return false;
+}
+
+bool EnemyPlane::wantToGoLeft() {
+    return false;
 }

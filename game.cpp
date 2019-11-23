@@ -40,7 +40,7 @@ Game::run() {
 }*/
 
 void Game::tick() {
-    for (auto &actor : actors)
+    for (Actor *actor : actors)
         actor->tick();
 }
 

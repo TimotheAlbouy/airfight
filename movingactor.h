@@ -9,11 +9,13 @@ protected:
     float movingSpeed;
     float steeringSpeed;
 public:
-    MovingActor(QPixmap map, float ms=5, float ss=3) : Actor(map) {
+    MovingActor(QPixmap pm, float ms=5, float ss=3) : Actor(pm) {
         movingSpeed = ms;
         steeringSpeed = ss;
-    };
-    void tick() { move(); };
+    }
+    void tick() {
+        move();
+    }
     virtual void move() = 0;
 };
 

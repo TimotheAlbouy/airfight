@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
     view.verticalScrollBar()->setEnabled(false);
     view.horizontalScrollBar()->setEnabled(false);
     view.show();
+    QPixmap background(":/res/background.png");
+    view.setBackgroundBrush(background);
 
     game->setPlayerFocus();
 

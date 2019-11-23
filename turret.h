@@ -6,8 +6,8 @@
 class Turret : public ShootingActor
 {
 public:
-    Turret(QPixmap map);
-    void shoot();
+    Turret(QPixmap pm) : Actor(pm), ShootingActor(pm) { }
+    bool wantToShoot();
 };
 
 #endif // TURRET_H

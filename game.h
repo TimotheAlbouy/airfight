@@ -14,13 +14,9 @@ private:
     QTimer *timer;
     PlayerPlane *player;
     std::vector<Actor*> actors;
-
 public:
     Game();
     void setPlayerFocus();
-    //void initialize();
-    //void run();
-
 public slots:
     void tick();
 };

@@ -9,25 +9,38 @@
 class Plane : public MovingActor
 {
 public:
-    Plane(QPixmap map) : Actor(map), MovingActor(map) { };
+    Plane(QPixmap pm) : Actor(pm), MovingActor(pm) { }
     void tick() {
         MovingActor::tick();
         checkIfOutOfBounds();
-    };
+    }
     void checkIfOutOfBounds() {
         QPointF pos = scenePos();
         QRectF rect = boundingRect();
-        QRectF parentRect = QApplication::desktop()->screenGeometry();
+        QRectF window = QApplication::desktop()->screenGeometry();
         QTransform t = transform();
-        qDebug() << "x: " << pos.x() << "; y: " << pos.y();
-        qDebug() << "width: " << rect.width() << "; height: " << rect.height();
-        qDebug() << "parent width: " << parentRect.width() << "; parent height: " << parentRect.height();
-        qDebug() << "";
-        if (pos.x() < 0 - rect.width() || pos.x() > parentRect.width() ||
-            pos.y() < 0 - rect.height() || pos.y() > parentRect.height())
+        qDebug() << "pos: " << pos;
+        if (pos.x() < -window.width()/2 - rect.width() ||
+            pos.x() > window.width()/2 ||
+            pos.y() < -window.height()/2 - 5*rect.height() ||
+            pos.y() > window.height()/2)
             t.rotate(180);
         setTransform(t);
     }
+    void move() {
+        QTransform t = Actor::transform();
+        QRectF rect = Actor::boundingRect();
+        t.translate(rect.width()/2, rect.height()/2);
+        if (wantToGoRight())
+            t.rotate(steeringSpeed);
+        if (wantToGoLeft())
+            t.rotate(-steeringSpeed);
+        t.translate(-rect.width()/2, -rect.height()/2);
+        t.translate(0, -movingSpeed);
+        Actor::setTransform(t);
+    }
+    virtual bool wantToGoRight() = 0;
+    virtual bool wantToGoLeft() = 0;
 };
 
 #endif // PLANE_H

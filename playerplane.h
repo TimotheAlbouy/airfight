@@ -9,15 +9,14 @@ private:
     bool leftPressed = false;
     bool rightPressed = false;
     bool upPressed = false;
-    bool isLeftPressed() { return leftPressed; };
-    bool isRightPressed() { return rightPressed; };
-    bool isUpPressed() { return upPressed; };
 public:
-    PlayerPlane(QPixmap map) : Actor(map), ShootingPlane(map) { };
-    void move();
+    PlayerPlane(QPixmap pm) : Actor(pm), ShootingPlane(pm) { }
     void shoot();
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+    bool wantToGoRight();
+    bool wantToGoLeft();
+    bool wantToShoot();
 };
 
 #endif // PLAYERPLANE_H

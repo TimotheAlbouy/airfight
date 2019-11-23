@@ -8,12 +8,11 @@
 class ShootingPlane : public Plane, public ShootingActor
 {
 public:
-    ShootingPlane(QPixmap map) : Actor(map), Plane(map), ShootingActor(map) { };
+    ShootingPlane(QPixmap pm) : Actor(pm), Plane(pm), ShootingActor(pm) { }
     void tick() {
-        move();
-        shoot();
-        checkIfOutOfBounds();
-    };
+        ShootingActor::tick();
+        Plane::tick();
+    }
 };
 
 #endif // SHOOTINGPLANE_H

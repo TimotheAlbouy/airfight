@@ -3,11 +3,17 @@
 
 #include "movingactor.h"
 
+class ShootingActor; // forward declaration to prevent circular dependency
+
 class Projectile : public MovingActor
 {
+protected:
+    ShootingActor *shooter;
 public:
-    Projectile(QPixmap map) : Actor(map), MovingActor(map) { };
-    void tick();
+    Projectile(QPixmap pm, ShootingActor *s) : Actor(pm), MovingActor(pm) {
+        shooter = s;
+    }
+    void move();
 };
 
 #endif // PROJECTILE_H

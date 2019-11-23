@@ -2,12 +2,12 @@
 #define ACTOR_H
 
 #include <QGraphicsPixmapItem>
-#include <QDebug>
+
 
 class Actor : public QGraphicsPixmapItem
 {
 public:
-    Actor(QPixmap map) : QGraphicsPixmapItem(map) { };
+    Actor(QPixmap pm) : QGraphicsPixmapItem(pm) { }
     virtual void tick() = 0;
 };
 
