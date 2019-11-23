@@ -13,7 +13,16 @@ public:
     Projectile(QPixmap pm, ShootingActor *s) : Actor(pm), MovingActor(pm) {
         shooter = s;
     }
-    void move();
+
+    bool wantToGoRight() {
+        return false;
+    }
+
+    bool wantToGoLeft() {
+        return false;
+    }
+
+    void handleOutOfBounds();
 };
 
 #endif // PROJECTILE_H

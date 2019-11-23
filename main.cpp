@@ -4,9 +4,14 @@
 #include <QScrollBar>
 #include <QLoggingCategory>
 
-
 #include "game.h"
-#include <QDebug>
+
+class GameView : public QGraphicsView
+{
+public:
+    GameView(Game* g) : QGraphicsView(g) { }
+    void scrollContentsBy(int, int) override { }
+};
 
 int main(int argc, char *argv[])
 {
@@ -18,10 +23,10 @@ int main(int argc, char *argv[])
 
     Game *game = new Game();
 
-    QGraphicsView view(game);
+    GameView view(game);
     view.setFixedSize(1000, 1000);
-    view.verticalScrollBar()->setEnabled(false);
-    view.horizontalScrollBar()->setEnabled(false);
+    //view.verticalScrollBar()->setEnabled(false);
+    //view.horizontalScrollBar()->setEnabled(false);
     view.show();
     QPixmap background(":/res/background.png");
     view.setBackgroundBrush(background);

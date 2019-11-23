@@ -1,5 +1,4 @@
 #include "playerplane.h"
-#include <QDebug>
 #include <QKeyEvent>
 
 void PlayerPlane::shoot()

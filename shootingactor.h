@@ -1,6 +1,8 @@
 #ifndef SHOOTINGACTOR_H
 #define SHOOTINGACTOR_H
 
+#include <QDebug>
+
 #include <QGraphicsScene>
 
 #include "actor.h"
@@ -10,27 +12,38 @@ class ShootingActor : virtual public Actor
 {
 protected:
     int ticksPerShoot;
-    int ticksAfterLastShoot = 0;
+    int ticksAfterLastShoot;
     float projectileSpeed;
     std::vector<Projectile*> projectiles;
 public:
-    ShootingActor(QPixmap pm, int tps=5, float ps=5) : Actor(pm) {
+    ShootingActor(QPixmap pm, int tps=10, float ps=6) : Actor(pm) {
         ticksPerShoot = tps;
+        ticksAfterLastShoot = tps;
         projectileSpeed = ps;
+        setFlag(QGraphicsItem::ItemIsFocusable);
     }
+
     void tick() {
-        if (wantToShoot())
+        if (wantToShoot() && ticksAfterLastShoot >= ticksPerShoot)
             shoot();
         ticksAfterLastShoot++;
     }
+
     void shoot() {
-        if (ticksAfterLastShoot < ticksPerShoot) {
-            QPixmap pm(":/res/projectile.png");
-            Projectile *p = new Projectile(pm, this);
-            scene()->addItem(p);
-            ticksAfterLastShoot = 0;
-        }
+        QPixmap projectilePm(":/res/projectile.png");
+        projectilePm = projectilePm.scaled(10, 10, Qt::KeepAspectRatio);
+        Projectile *p = new Projectile(projectilePm, this);
+
+        QPointF pos = scenePos();
+        //QRectF rect = boundingRect();
+        p->setPos(pos.x(), y());
+
+        projectiles.push_back(p);
+        scene()->addItem(p);
+
+        ticksAfterLastShoot = 0;
     }
+
     virtual bool wantToShoot() = 0;
 };
 

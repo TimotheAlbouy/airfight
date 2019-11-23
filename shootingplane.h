@@ -3,7 +3,6 @@
 
 #include "plane.h"
 #include "shootingactor.h"
-#include <QDebug>
 
 class ShootingPlane : public Plane, public ShootingActor
 {
