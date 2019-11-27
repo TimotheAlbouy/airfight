@@ -10,19 +10,22 @@ class Projectile : public MovingActor
 protected:
     ShootingActor *shooter;
 public:
-    Projectile(QPixmap pm, ShootingActor *s) : Actor(pm), MovingActor(pm) {
+    Projectile(QPixmap pm, ShootingActor *s) : Actor(pm), MovingActor(pm, 15) {
         shooter = s;
     }
 
-    bool wantToGoRight() {
+    bool wantToTurnRight() {
         return false;
     }
 
-    bool wantToGoLeft() {
+    bool wantToTurnLeft() {
         return false;
     }
 
-    void handleOutOfBounds();
+    void handleOutOfBounds() {
+        scene()->removeItem(this);
+        //delete this;
+    }
 };
 
 #endif // PROJECTILE_H

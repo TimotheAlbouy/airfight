@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
     game.cpp \
     turret.cpp \
-    projectile.cpp \
     playerplane.cpp \
     enemyplane.cpp
 

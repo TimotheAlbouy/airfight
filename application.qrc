@@ -1,6 +1,7 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
     <file>res/player-plane.png</file>
+    <file>res/enemy-plane.png</file>
     <file>res/black-box.png</file>
     <file>res/red-box.png</file>
     <file>res/background.png</file>

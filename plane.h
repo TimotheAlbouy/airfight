@@ -9,9 +9,7 @@ public:
     Plane(QPixmap pm) : Actor(pm), MovingActor(pm) { }
 
     void handleOutOfBounds() {
-        QTransform t = transform();
-        t.rotate(180);
-        setTransform(t);
+        transformRotate(180);
     }
 };
 

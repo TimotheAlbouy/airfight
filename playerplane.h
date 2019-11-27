@@ -14,8 +14,8 @@ public:
     void shoot();
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
-    bool wantToGoRight();
-    bool wantToGoLeft();
+    bool wantToTurnRight();
+    bool wantToTurnLeft();
     bool wantToShoot();
 };
 

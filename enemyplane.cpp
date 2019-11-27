@@ -1,9 +1,9 @@
 #include "enemyplane.h"
 
-bool EnemyPlane::wantToGoRight() {
+bool EnemyPlane::wantToTurnRight() {
     return false;
 }
 
-bool EnemyPlane::wantToGoLeft() {
+bool EnemyPlane::wantToTurnLeft() {
     return false;
 }

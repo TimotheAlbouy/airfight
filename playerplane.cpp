@@ -36,12 +36,12 @@ void PlayerPlane::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-bool PlayerPlane::wantToGoRight()
+bool PlayerPlane::wantToTurnRight()
 {
     return rightPressed;
 }
 
-bool PlayerPlane::wantToGoLeft()
+bool PlayerPlane::wantToTurnLeft()
 {
     return leftPressed;
 }
