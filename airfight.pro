@@ -14,7 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     game.cpp \
-    turret.cpp \
     playerplane.cpp \
     enemyplane.cpp
 
@@ -23,11 +22,9 @@ HEADERS  += \
     actor.h \
     movingactor.h \
     shootingactor.h \
-    turret.h \
     projectile.h \
     plane.h \
     playerplane.h \
-    shootingplane.h \
     enemyplane.h
 
 FORMS    += mainwindow.ui

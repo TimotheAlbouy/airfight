@@ -1,10 +1,9 @@
 #include "playerplane.h"
 #include <QKeyEvent>
 
-void PlayerPlane::shoot()
-{
-    //if
-}
+PlayerPlane::PlayerPlane(QPixmap pm, float ss, unsigned int h, float ms) :
+    Actor(pm, ss, h), Plane(pm, ss, h, ms)
+{ }
 
 void PlayerPlane::keyPressEvent(QKeyEvent *event)
 {

@@ -9,12 +9,13 @@
 class ShootingActor : virtual public Actor
 {
 protected:
-    int ticksPerShoot;
-    int ticksAfterLastShoot;
+    unsigned int ticksPerShoot;
+    unsigned int ticksAfterLastShoot;
     float projectileSpeed;
-    std::vector<Projectile*> projectiles;
 public:
-    ShootingActor(QPixmap pm, int tps=10, float ps=6) : Actor(pm) {
+    ShootingActor(QPixmap pm, float ss, unsigned int h, unsigned int tps, float ps) :
+            Actor(pm, ss, h)
+    {
         ticksPerShoot = tps;
         ticksAfterLastShoot = tps;
         projectileSpeed = ps;
@@ -35,14 +36,16 @@ public:
 
         QRectF planeRect = boundingRect();
         QRectF projectileRect = p->boundingRect();
-        QPointF pos = mapToParent(QPointF(planeRect.width()/2-projectileRect.width()/2, 0));
+        QPointF pos = mapToParent(
+            QPointF(
+                planeRect.width()/2-projectileRect.width()/2,
+                -2*projectileRect.height()
+            )
+        );
         p->setPos(pos);
+        p->transformRotate(transformRotation);
 
-        p->setTransform(p->transform().rotate(transformRotation));
-
-        projectiles.push_back(p);
         scene()->addItem(p);
-
         ticksAfterLastShoot = 0;
     }
 

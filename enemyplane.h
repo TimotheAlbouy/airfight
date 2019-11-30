@@ -2,14 +2,20 @@
 #define ENEMYPLANE_H
 
 #include "plane.h"
+#include "playerplane.h"
 
 class EnemyPlane : public Plane
 {
+protected:
+    PlayerPlane *player;
+    QGraphicsRectItem *leftRect;
+    QGraphicsRectItem *rightRect;
+    QGraphicsRectItem *firingLine;
 public:
-    EnemyPlane(QPixmap pm) : Actor(pm), Plane(pm) { }
+    EnemyPlane(QPixmap pm, float ss, unsigned int h, float ms, PlayerPlane *p);
     bool wantToTurnRight();
     bool wantToTurnLeft();
-    //void operator += (float a);
+    bool wantToShoot();
 };
 
 #endif // ENEMYPLANE_H

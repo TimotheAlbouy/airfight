@@ -14,7 +14,7 @@ class MovingActor : virtual public Actor
 protected:
     float movingSpeed;
 public:
-    MovingActor(QPixmap pm, float ms=5) : Actor(pm) {
+    MovingActor(QPixmap pm, float ss, unsigned int h, float ms) : Actor(pm, ss, h) {
         movingSpeed = ms;
     }
 
@@ -30,7 +30,7 @@ public:
         QRectF rect = boundingRect();
         qreal sceneWidth = scene()->width();
         qreal sceneHeight = scene()->height();
-        qDebug() << "width: " << sceneWidth << "; height: " << sceneHeight;
+        //qDebug() << "width: " << sceneWidth << "; height: " << sceneHeight;
         return pos.x() < -sceneWidth/2 - rect.width() ||
                pos.x() > sceneWidth/2 ||
                pos.y() < -sceneHeight/2 - rect.height() ||
@@ -38,9 +38,9 @@ public:
     }
 
     void move() {
-        QTransform t = transform();
-        t.translate(0, -movingSpeed);
-        setTransform(t);
+        QTransform trsf;
+        trsf.translate(0, -movingSpeed);
+        setTransform(trsf, true);
     }
 
     virtual void handleOutOfBounds() = 0;

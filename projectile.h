@@ -10,7 +10,7 @@ class Projectile : public MovingActor
 protected:
     ShootingActor *shooter;
 public:
-    Projectile(QPixmap pm, ShootingActor *s) : Actor(pm), MovingActor(pm, 15) {
+    Projectile(QPixmap pm, ShootingActor *s) : Actor(pm, 0, 1), MovingActor(pm, 0, 1, 15) {
         shooter = s;
     }
 

@@ -9,9 +9,13 @@ class Actor : public QGraphicsPixmapItem
 protected:
     qreal transformRotation = 0;
     float steeringSpeed;
+    unsigned int health;
 public:
-    Actor(QPixmap pm, float ss=1.5) : QGraphicsPixmapItem(pm) {
+    Actor(QPixmap pm, float ss, unsigned int h) : QGraphicsPixmapItem(pm) {
         steeringSpeed = ss;
+        if (h == 0)
+            h = 1;
+        health = h;
     }
 
     virtual void tick() {
@@ -31,12 +35,23 @@ public:
 
     void transformRotate(int rot) {
         QRectF rect = boundingRect();
-        setTransform(transform()
-            .translate(rect.width()/2, rect.height()/2)
+        QTransform trsf;
+        trsf.translate(rect.width()/2, rect.height()/2)
             .rotate(rot)
-            .translate(-rect.width()/2, -rect.height()/2)
-        );
+            .translate(-rect.width()/2, -rect.height()/2);
+        setTransform(trsf, true);
         transformRotation += rot;
+    }
+
+    void loseHealth() {
+        health--;
+        if (health == 0)
+            die();
+    }
+
+    void die() {
+        qDebug() << this << " died";
+        scene()->removeItem(this);
     }
 
     virtual bool wantToTurnRight() = 0;

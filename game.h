@@ -15,7 +15,7 @@ private:
     PlayerPlane *player;
 public:
     Game();
-    void setPlayerFocus();
+    void handleCollisions();
 public slots:
     void tick();
 };
