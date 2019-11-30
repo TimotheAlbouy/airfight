@@ -33,7 +33,7 @@ public:
         transformRotate(-steeringSpeed);
     }
 
-    void transformRotate(int rot) {
+    void transformRotate(float rot) {
         QRectF rect = boundingRect();
         QTransform trsf;
         trsf.translate(rect.width()/2, rect.height()/2)

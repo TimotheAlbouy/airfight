@@ -8,6 +8,8 @@
 
 Game::Game()
 {
+    setStickyFocus(true);
+
     // create the view
     const unsigned int width = 1000;
     const unsigned int height = 1000;
@@ -26,9 +28,7 @@ Game::Game()
     // create the player plane
     QPixmap playerPm(":/res/player-plane.png");
     playerPm = playerPm.scaled(128, 128, Qt::KeepAspectRatio);
-    player = new PlayerPlane(playerPm, 1.99, 5, 6);
-    player->setFocus();
-    setStickyFocus(true);
+    player = new PlayerPlane(playerPm, 1.5, 5, 6);
     //player->setPos(0, 0);
     this->addItem(player);
 
@@ -39,7 +39,7 @@ Game::Game()
     //std::mt19937 rng(rd());
     //std::uniform_int_distribution<int> uniWidth(-width/2,max);
     for (int i = 0; i < 1; i++) {
-        EnemyPlane *enemy = new EnemyPlane(enemyPm, 1.5, 5, 5, player);
+        EnemyPlane *enemy = new EnemyPlane(enemyPm, 1, 5, 5, player);
         //QTransform t(gen.bounded());
         enemy->setPos(250, 250);
         this->addItem(enemy);

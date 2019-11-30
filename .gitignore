@@ -1,0 +1,10 @@
+airfight.pro.user
+
+# compilation files
+*.gch
+*.h~
+*.cpp~
+*.h.*
+*.cpp.*
+
+*.sh

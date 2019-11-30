@@ -19,7 +19,6 @@ public:
         ticksPerShoot = tps;
         ticksAfterLastShoot = tps;
         projectileSpeed = ps;
-        setFlag(QGraphicsItem::ItemIsFocusable);
     }
 
     void tick() {

@@ -3,7 +3,10 @@
 
 PlayerPlane::PlayerPlane(QPixmap pm, float ss, unsigned int h, float ms) :
     Actor(pm, ss, h), Plane(pm, ss, h, ms)
-{ }
+{
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    setFocus();
+}
 
 void PlayerPlane::keyPressEvent(QKeyEvent *event)
 {
