@@ -2,7 +2,7 @@
 <qresource>
     <file>res/player-plane.png</file>
     <file>res/enemy-plane.png</file>
-    <file>res/black-box.png</file>
+    <file>res/explosion.gif</file>
     <file>res/red-box.png</file>
     <file>res/background.png</file>
     <file>res/projectile.png</file>

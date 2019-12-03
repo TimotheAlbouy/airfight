@@ -11,14 +11,16 @@ protected:
     float steeringSpeed;
     unsigned int health;
 public:
-    Actor(QPixmap pm, float ss, unsigned int h) : QGraphicsPixmapItem(pm) {
+    Actor(QPixmap pm, float ss, unsigned int h) : QGraphicsPixmapItem(pm)
+    {
         steeringSpeed = ss;
         if (h == 0)
             h = 1;
         health = h;
     }
 
-    virtual void tick() {
+    virtual void tick()
+    {
         if (wantToTurnRight())
             turnRight();
         if (wantToTurnLeft())
@@ -49,9 +51,10 @@ public:
             die();
     }
 
-    void die() {
-        qDebug() << this << " died";
+    virtual void die() {
+        //qDebug() << this << " died";
         scene()->removeItem(this);
+        //delete this;
     }
 
     virtual bool wantToTurnRight() = 0;

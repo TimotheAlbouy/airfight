@@ -14,7 +14,7 @@ protected:
     float projectileSpeed;
 public:
     ShootingActor(QPixmap pm, float ss, unsigned int h, unsigned int tps, float ps) :
-            Actor(pm, ss, h)
+        Actor(pm, ss, h)
     {
         ticksPerShoot = tps;
         ticksAfterLastShoot = tps;
@@ -35,7 +35,7 @@ public:
 
         QRectF planeRect = boundingRect();
         QRectF projectileRect = p->boundingRect();
-        QPointF pos = mapToParent(
+        QPointF pos = mapToScene(
             QPointF(
                 planeRect.width()/2-projectileRect.width()/2,
                 -2*projectileRect.height()

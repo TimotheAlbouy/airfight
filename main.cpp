@@ -1,6 +1,7 @@
+#include <QDebug>
+
 #include <QApplication>
 #include <QLoggingCategory>
-#include <QDebug>
 
 #include "game.h"
 

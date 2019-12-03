@@ -3,9 +3,8 @@
 
 #include <QDebug>
 
-#include <QApplication>
-#include <QDesktopWidget>
 #include <QGraphicsScene>
+#include <QGraphicsView>
 
 #include "actor.h"
 
@@ -23,18 +22,19 @@ public:
         if (isOutOfBounds())
             handleOutOfBounds();
         move();
+        //qDebug() << "pos: " << scenePos();
     }
 
     bool isOutOfBounds() {
-        QPointF pos = scenePos();
         QRectF rect = boundingRect();
+        QPointF pos = mapToScene(rect.width()/2, 0);
+        //qDebug() << "pos1: " << pos << "; pos2: " << scenePos();
         qreal sceneWidth = scene()->width();
         qreal sceneHeight = scene()->height();
-        //qDebug() << "width: " << sceneWidth << "; height: " << sceneHeight;
-        return pos.x() < -sceneWidth/2 - rect.width() ||
-               pos.x() > sceneWidth/2 ||
-               pos.y() < -sceneHeight/2 - rect.height() ||
-               pos.y() > sceneHeight/2;
+        return pos.x() < 0 ||
+               pos.x() > sceneWidth ||
+               pos.y() < 0 ||
+               pos.y() > sceneHeight;
     }
 
     void move() {
