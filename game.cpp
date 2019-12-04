@@ -15,7 +15,6 @@ Game::Game()
     QGraphicsView *view = new QGraphicsView(this);
     view->setFixedSize(WIDTH, HEIGHT);
     setSceneRect(0, 0, WIDTH, HEIGHT);
-    //view->fitInView(0, 0, width, height, Qt::KeepAspectRatio);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setBackgroundBrush(background);
@@ -25,12 +24,8 @@ Game::Game()
     QPixmap playerPm(":/res/player-plane.png");
     playerPm = playerPm.scaled(96, 96, Qt::KeepAspectRatio);
     player = new PlayerPlane(playerPm, 1.5, 5, 6);
-    player->setPos(0, 0);
+    player->setPos(WIDTH/2, HEIGHT/2);
     this->addItem(player);
-
-    // create the enemy planes
-    for (int i = 0; i < 1; i++)
-        spawnEnemy();
 
     // connect and start the timer
     timer = new QTimer(this);
@@ -44,7 +39,15 @@ void Game::tick()
         if (Actor *actor = dynamic_cast<Actor*>(item))
             actor->tick();
     }
+    randomDrawSpawnEnemy();
     handleCollisions();
+}
+
+void Game::randomDrawSpawnEnemy()
+{
+    int randomDraw = randInt(0, AVERAGE_TICKS_ENEMY_SPAWN);
+    if (randomDraw == AVERAGE_TICKS_ENEMY_SPAWN)
+        spawnEnemy();
 }
 
 void Game::handleCollisions()
@@ -94,7 +97,30 @@ void Game::spawnEnemy()
     QPixmap enemyPm(":/res/enemy-plane.png");
     enemyPm = enemyPm.scaled(96, 96, Qt::KeepAspectRatio);
     EnemyPlane *enemy = new EnemyPlane(enemyPm, 1, 5, 5, player);
-    QPointF pos(randInt(0, WIDTH), randInt(0, HEIGHT));
+    QRectF enemyRect = enemy->boundingRect();
+
+    int direction = randInt(0, 3);
+    int rot = 0;
+    QPointF pos;
+    switch (direction) {
+        case 0: // arrive from the left edge
+            rot = 90;
+            pos = QPointF(-enemyRect.height(), randInt(0, HEIGHT-enemyRect.width()));
+            break;
+        case 1: // arrive from the upper edge
+            rot = 180;
+            pos = QPointF(randInt(enemyRect.width(), HEIGHT), 0);
+            break;
+        case 2: // arrive from the right edge
+            rot = -90;
+            pos = QPointF(WIDTH, randInt(enemyRect.width(), HEIGHT));
+            break;
+        case 3: // arrive from the lowest edge
+            pos = QPointF(randInt(0, WIDTH-enemyRect.width()), HEIGHT);
+            break;
+    }
+
+    enemy->transformRotate(rot);
     enemy->setPos(pos);
     this->addItem(enemy);
 }
@@ -106,6 +132,8 @@ int Game::randInt(int min, int max)
         rng = std::mt19937(rd());
         rngSeeded = true;
     }
-    std::uniform_int_distribution<int> uniDist(min, max);
-    return uniDist(rng);
+    std::uniform_int_distribution<int> uniDist(min, max + 1);
+    int ret = uniDist(rng);
+    qDebug() << "pseudo random: " << ret;
+    return ret;
 }

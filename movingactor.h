@@ -22,19 +22,17 @@ public:
         if (isOutOfBounds())
             handleOutOfBounds();
         move();
-        //qDebug() << "pos: " << scenePos();
     }
 
     bool isOutOfBounds() {
         QRectF rect = boundingRect();
         QPointF pos = mapToScene(rect.width()/2, 0);
-        //qDebug() << "pos1: " << pos << "; pos2: " << scenePos();
         qreal sceneWidth = scene()->width();
         qreal sceneHeight = scene()->height();
-        return pos.x() < 0 ||
-               pos.x() > sceneWidth ||
-               pos.y() < 0 ||
-               pos.y() > sceneHeight;
+        return pos.x() < -rect.height() ||
+               pos.x() > sceneWidth + rect.height() ||
+               pos.y() < -rect.height() ||
+               pos.y() > sceneHeight + rect.height();
     }
 
     void move() {

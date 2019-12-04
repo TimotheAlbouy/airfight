@@ -2,7 +2,7 @@
 #define ACTOR_H
 
 #include <QGraphicsPixmapItem>
-
+#include <QGraphicsScene>
 
 class Actor : public QGraphicsPixmapItem
 {

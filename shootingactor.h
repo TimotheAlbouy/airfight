@@ -29,8 +29,7 @@ public:
     }
 
     void shoot() {
-        QPixmap projectilePm(":/res/red-box.png");
-        projectilePm = projectilePm.scaled(10, 10, Qt::KeepAspectRatio);
+        QPixmap projectilePm(":/res/projectile.png");
         Projectile *p = new Projectile(projectilePm, this);
 
         QRectF planeRect = boundingRect();
@@ -38,7 +37,7 @@ public:
         QPointF pos = mapToScene(
             QPointF(
                 planeRect.width()/2-projectileRect.width()/2,
-                -2*projectileRect.height()
+                -1.5*projectileRect.height()
             )
         );
         p->setPos(pos);
