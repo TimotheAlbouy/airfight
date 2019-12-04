@@ -5,19 +5,24 @@ EnemyPlane::EnemyPlane(QPixmap pm, float ss, unsigned int h, float ms, PlayerPla
 {
     player = p;
 
-    // turning rectangles
-    int rectWidth = pm.width()*5;
-    int rectHeight = pm.height()*5;
-    leftRect = new QGraphicsRectItem(
-        -rectWidth+pm.width()/2, -rectHeight+pm.height(),
-        rectWidth, rectHeight, this
-    );
-    rightRect = new QGraphicsRectItem(
-        pm.width()/2, -rectHeight+pm.height(),
-        rectWidth, rectHeight, this
-    );
+    // sight triangles
+    //int triangleSide = pm.width()*5;
+    int sightLength = pm.height()*3;
+    int sightWidth = pm.width()*2;
 
-    // firing rectangle
+    QPolygonF leftSightTriangle;
+    leftSightTriangle.append(QPointF(-sightWidth + pm.width()/2, -sightLength));
+    leftSightTriangle.append(QPointF(pm.width()/2, -sightLength));
+    leftSightTriangle.append(QPointF(pm.width()/2, 0));
+    leftSight = new QGraphicsPolygonItem(leftSightTriangle, this);
+
+    QPolygonF rightSightTriangle;
+    rightSightTriangle.append(QPointF(sightWidth + pm.width()/2, -sightLength));
+    rightSightTriangle.append(QPointF(pm.width()/2, -sightLength));
+    rightSightTriangle.append(QPointF(pm.width()/2, 0));
+    rightSight = new QGraphicsPolygonItem(rightSightTriangle, this);
+
+    // firing line rectangle
     int lineWidth = pm.width()/2;
     int lineHeight = pm.height()*7;
     firingLine = new QGraphicsRectItem(
@@ -28,12 +33,12 @@ EnemyPlane::EnemyPlane(QPixmap pm, float ss, unsigned int h, float ms, PlayerPla
 
 bool EnemyPlane::wantToTurnRight()
 {
-    return rightRect->collidesWithItem(player);
+    return rightSight->collidesWithItem(player);
 }
 
 bool EnemyPlane::wantToTurnLeft()
 {
-    return leftRect->collidesWithItem(player);
+    return leftSight->collidesWithItem(player);
 }
 
 bool EnemyPlane::wantToShoot()

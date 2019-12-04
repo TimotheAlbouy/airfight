@@ -11,7 +11,7 @@ class Game : public QGraphicsScene
 private:
     static const int WIDTH = 1000;
     static const int HEIGHT = 1000;
-    static const int AVERAGE_TICKS_ENEMY_SPAWN = 500;
+    static const int AVERAGE_TICKS_SPAWN_ENEMY = 250;
     QTimer *timer;
     PlayerPlane *player;
     std::mt19937 rng;

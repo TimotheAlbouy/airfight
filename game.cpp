@@ -27,6 +27,9 @@ Game::Game()
     player->setPos(WIDTH/2, HEIGHT/2);
     this->addItem(player);
 
+    // create a first enemy
+    spawnEnemy();
+
     // connect and start the timer
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(tick()));
@@ -45,8 +48,8 @@ void Game::tick()
 
 void Game::randomDrawSpawnEnemy()
 {
-    int randomDraw = randInt(0, AVERAGE_TICKS_ENEMY_SPAWN);
-    if (randomDraw == AVERAGE_TICKS_ENEMY_SPAWN)
+    int randomDraw = randInt(0, AVERAGE_TICKS_SPAWN_ENEMY);
+    if (randomDraw == AVERAGE_TICKS_SPAWN_ENEMY)
         spawnEnemy();
 }
 
@@ -133,7 +136,5 @@ int Game::randInt(int min, int max)
         rngSeeded = true;
     }
     std::uniform_int_distribution<int> uniDist(min, max + 1);
-    int ret = uniDist(rng);
-    qDebug() << "pseudo random: " << ret;
-    return ret;
+    return uniDist(rng);
 }

@@ -8,8 +8,8 @@ class EnemyPlane : public Plane
 {
 protected:
     PlayerPlane *player;
-    QGraphicsRectItem *leftRect;
-    QGraphicsRectItem *rightRect;
+    QGraphicsPolygonItem *leftSight;
+    QGraphicsPolygonItem *rightSight;
     QGraphicsRectItem *firingLine;
 public:
     EnemyPlane(QPixmap pm, float ss, unsigned int h, float ms, PlayerPlane *p);
