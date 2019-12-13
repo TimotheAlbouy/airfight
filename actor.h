@@ -42,6 +42,11 @@ protected:
      */
     unsigned int gifHeight;
 
+    /**
+     * @brief Indicator if the actor died.
+     */
+    bool died = false;
+
 public:
     /**
      * @brief Constructor.

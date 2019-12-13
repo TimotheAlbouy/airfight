@@ -1,11 +1,13 @@
 #include <QDebug>
-
+#include <QApplication>
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <QGraphicsProxyWidget>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
 
 #include "game.h"
 #include "playerplane.h"
@@ -47,6 +49,14 @@ Game::Game()
     logo->setZValue(10);
     addItem(logo);
 
+    // play the background music in a loop
+    QMediaPlaylist *playlist = new QMediaPlaylist();
+    playlist->addMedia(QUrl("qrc:/res/music.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    QMediaPlayer *music = new QMediaPlayer();
+    music->setPlaylist(playlist);
+    music->play();
+
     // do not lose focus on clicks
     setStickyFocus(true);
 
@@ -80,17 +90,17 @@ void Game::createMenuWidget()
 {
     // create the play and help buttons
     QPushButton *playButton = new QPushButton("Play");
-    QPushButton *helpButton = new QPushButton("Help");
+    QPushButton *exitButton = new QPushButton("Exit");
 
     // connect the buttons to their respective action
     connect(playButton, SIGNAL(released()), this, SLOT(startGame()));
-    connect(helpButton, SIGNAL(released()), this, SLOT(startMenu()));
+    connect(exitButton, SIGNAL(released()), this, SLOT(exitGame()));
 
     // add the buttons to the inner widget
     QWidget *widget = new QWidget;
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addWidget(playButton);
-    layout->addWidget(helpButton);
+    layout->addWidget(exitButton);
     widget->setLayout(layout);
 
     // create the menu widget
@@ -131,11 +141,6 @@ void Game::createPauseWidgets()
 
 void Game::createPlayer()
 {
-    // create the pixmap
-    QPixmap playerPm(":/res/player-plane.png");
-    playerPm = playerPm.scaled(96, 96, Qt::KeepAspectRatio);
-
-    // create the player plane
     player = new PlayerPlane(infoDisplay);
     player->setPos(WIDTH/2, HEIGHT/2);
     this->addItem(player);
@@ -192,8 +197,6 @@ void Game::handleCollisions()
 
 void Game::spawnEnemy()
 {
-    QPixmap enemyPm(":/res/enemy-plane.png");
-    enemyPm = enemyPm.scaled(96, 96, Qt::KeepAspectRatio);
     EnemyPlane *enemy = new EnemyPlane(player);
     QRectF enemyRect = enemy->boundingRect();
 
@@ -238,7 +241,7 @@ int Game::randInt(int min, int max)
         rng = std::mt19937(rd());
         rngSeeded = true;
     }
-    std::uniform_int_distribution<int> uniDist(min, max + 1);
+    std::uniform_int_distribution<int> uniDist(min, max);
     return uniDist(rng);
 }
 
@@ -329,8 +332,19 @@ void Game::pauseGame()
 
 void Game::resumeGame()
 {
+    // clear the focus of the widgets
+    pauseButton->clearFocus();
+    pauseWidget->clearFocus();
+    gameOverWidget->clearFocus();
+    menuWidget->clearFocus();
+
     timer->start();
     pauseWidget->hide();
+}
+
+void Game::exitGame()
+{
+    QApplication::quit();
 }
 
 // OPERATOR OVERRIDE

@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QSound>
 
 #include "plane.h"
 
@@ -17,6 +18,12 @@ void Plane::tick()
 void Plane::handleOutOfBounds()
 {
     transformRotate(180);
+}
+
+void Plane::die()
+{
+    QSound::play(":/res/explosion.wav");
+    MovingActor::die();
 }
 
 QDebug operator<<(QDebug debug, const Plane *plane)

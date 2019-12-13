@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <QGraphicsScene>
+#include <QGraphicsItem>
+#include <random>
 
 #include "playerplane.h"
 
@@ -15,12 +17,12 @@ private:
     /**
      * @brief The width of the window.
      */
-    static const int WIDTH = 1000;
+    static const int WIDTH = 750;
 
     /**
      * @brief The height of the window.
      */
-    static const int HEIGHT = 1000;
+    static const int HEIGHT = 750;
 
     /**
      * @brief The value for which a new enemy is spawned if it is randomly drawn.
@@ -180,6 +182,11 @@ public slots:
      * @brief Resume the game.
      */
     void resumeGame();
+
+    /**
+     * @brief Exit the game.
+     */
+    void exitGame();
 };
 
 #endif // GAME_H

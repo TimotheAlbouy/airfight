@@ -1,5 +1,5 @@
 #include <QDebug>
-//#include <QSound>
+#include <QSound>
 
 #include "shootingactor.h"
 
@@ -35,7 +35,7 @@ void ShootingActor::shoot()
     p->transformRotate(transformRotation);
     scene()->addItem(p);
     projectiles.push_back(p);
-    //QSound::play(QString(":/res/shoot.wav"));
+    QSound::play(":/res/shoot.wav");
     ticksAfterLastShoot = 0;
 }
 

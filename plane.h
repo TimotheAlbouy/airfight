@@ -38,6 +38,11 @@ public:
     void handleOutOfBounds();
 
     /**
+     * @brief Remove from the scene and play an explosion sound.
+     */
+    void die();
+
+    /**
      * @brief Allow to serialize the plane for the debug stream.
      * @param debug the debug stream
      * @param plane the plane

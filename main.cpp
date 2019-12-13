@@ -9,7 +9,9 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     QLoggingCategory::setFilterRules("*.debug=true\n"
-                                     "qt.qpa.input*=false\n"
+                                     "qt.qpa*=false\n"
+                                     "qt.accessibility*=false\n"
+                                     "qt.text*=false\n"
                                      "qt.widgets*=false");
     new Game();
     return a.exec();

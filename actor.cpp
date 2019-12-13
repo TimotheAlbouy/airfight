@@ -51,7 +51,7 @@ void Actor::transformRotate(float rot)
 
 bool Actor::isDead()
 {
-    return health <= 0;
+    return died;
 }
 
 void Actor::loseHealth()
@@ -82,7 +82,7 @@ void Actor::die() {
         scene()->addWidget(dyingLabel);
         dyingGif->start();
     }
-
+    died = true;
     scene()->removeItem(this);
 }
 
