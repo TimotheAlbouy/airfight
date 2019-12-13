@@ -76,6 +76,7 @@ bool EnemyPlane::wantToShoot()
 
 void EnemyPlane::die()
 {
+    player->gainHealth();
     player->raiseScore();
     Plane::die();
 }

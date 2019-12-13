@@ -13,20 +13,28 @@ class ShootingActor : virtual public Actor
 {
 protected:
     /**
-     * @brief The number
+     * @brief The number of ticks between two shots.
      */
     unsigned int ticksPerShoot;
+
+    /**
+     * @brief The number of ticks after the last shoot.
+     */
     unsigned int ticksAfterLastShoot;
+
+    /**
+     * @brief The speed of the actor's projectiles.
+     */
     float projectileSpeed;
+
+    /**
+     * @brief The list of the actor's projectiles.
+     */
+    std::vector<Projectile*> projectiles;
+
 public:
     /**
      * @brief Constructor.
-     * @param pm the pixmap of the actor
-     * @param ss the steering speed of the actor
-     * @param h the initial health of the actor
-     * @param dg the dying gif of the actor
-     * @param gw the dying gif's width
-     * @param gh the dying gif's height
      * @param tps the number of ticks between 2 shots
      * @param ps the projectile speed.
      */

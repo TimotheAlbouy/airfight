@@ -22,7 +22,6 @@ void ShootingActor::tick()
 void ShootingActor::shoot()
 {
     Projectile *p = new Projectile(this);
-
     QRectF planeRect = boundingRect();
     QRectF projectileRect = p->boundingRect();
     QPointF pos = mapToScene(
@@ -31,11 +30,12 @@ void ShootingActor::shoot()
             -1.5*projectileRect.height()
         )
     );
+
     p->setPos(pos);
     p->transformRotate(transformRotation);
-
-    //QSound::play(":/res/shoot.wav");
     scene()->addItem(p);
+    projectiles.push_back(p);
+    //QSound::play(QString(":/res/shoot.wav"));
     ticksAfterLastShoot = 0;
 }
 

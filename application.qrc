@@ -8,5 +8,9 @@
         <file>res/menu-background.jpg</file>
         <file>res/explosion.gif</file>
         <file>res/hit.gif</file>
+        <file>res/explosion.wav</file>
+        <file>res/hit.wav</file>
+        <file>res/shoot.wav</file>
+        <file>res/music.mp3</file>
     </qresource>
 </RCC>
