@@ -15,7 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
     game.cpp \
     playerplane.cpp \
-    enemyplane.cpp
+    enemyplane.cpp \
+    actor.cpp \
+    plane.cpp \
+    shootingactor.cpp \
+    movingactor.cpp \
+    projectile.cpp
 
 HEADERS  += \
     game.h \

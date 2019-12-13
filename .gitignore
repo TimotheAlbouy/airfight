@@ -7,4 +7,5 @@ airfight.pro.user
 *.h.*
 *.cpp.*
 
+# utility scripts
 *.sh

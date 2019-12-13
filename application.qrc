@@ -1,10 +1,12 @@
-<!DOCTYPE RCC><RCC version="1.0">
-<qresource>
-    <file>res/player-plane.png</file>
-    <file>res/enemy-plane.png</file>
-    <file>res/explosion.gif</file>
-    <file>res/red-box.png</file>
-    <file>res/background.png</file>
-    <file>res/projectile.png</file>
-</qresource>
+<RCC>
+    <qresource prefix="/">
+        <file>res/player-plane.png</file>
+        <file>res/enemy-plane.png</file>
+        <file>res/projectile.png</file>
+        <file>res/logo.png</file>
+        <file>res/game-background.png</file>
+        <file>res/menu-background.jpg</file>
+        <file>res/explosion.gif</file>
+        <file>res/hit.gif</file>
+    </qresource>
 </RCC>

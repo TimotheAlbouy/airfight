@@ -2,64 +2,48 @@
 #define PLANE_H
 
 #include <QMovie>
-#include <QLabel>
 
 #include "movingactor.h"
 #include "shootingactor.h"
 
-class Plane : public QObject, public MovingActor, public ShootingActor
+/**
+ * @brief A plane actor, that can both move and shoot.
+ */
+class Plane : public MovingActor, public ShootingActor
 {
-    Q_OBJECT
 protected:
+    /**
+     * @brief The gif of an explosion displayed when the plane dies.
+     */
     QMovie *explosionGif = new QMovie(":/res/explosion.gif");
+
 public:
-    Plane(QPixmap pm, float ss, unsigned int h, float ms) :
-        Actor(pm, ss, h), MovingActor(pm, ss, h, ms), ShootingActor(pm, ss, h, 10, 5)
-    {
-        connect(explosionGif, SIGNAL(frameChanged(int)), this, SLOT(stopExplosionGif()));
-    }
+    /**
+     * @brief Constructor.
+     * @param pm the pixmap of the plane
+     * @param ss the steering speed of the plane
+     * @param h the health of the plane
+     * @param ms the moving speed of the plane
+     */
+    Plane(QPixmap pm, float ss, unsigned int h, float ms);
 
-    void tick()
-    {
-        ShootingActor::tick();
-        MovingActor::tick();
-    }
+    /**
+     * @brief Execute actions for every frame of the game.
+     */
+    void tick();
 
-    void handleOutOfBounds()
-    {
-        transformRotate(180);
-    }
+    /**
+     * @brief Make the plane do a 180 degrees turn when it is out of bounds.
+     */
+    void handleOutOfBounds();
 
-    void die()
-    {
-        int gifWidth = 156;
-        int gifHeight = 228;
-        QLabel *explosionLabel = new QLabel;
-        QPointF center = mapToScene(boundingRect().center());
-        QRect labelRect(
-            center.x()-gifWidth/2,
-            center.y()-gifHeight/2,
-            gifWidth,
-            gifHeight
-        );
-
-        explosionLabel->setAttribute(Qt::WA_TranslucentBackground, true);
-        explosionLabel->setMovie(explosionGif);
-        explosionLabel->setGeometry(labelRect);
-        scene()->addWidget(explosionLabel);
-        explosionGif->start();
-
-        MovingActor::die();
-    }
-
-public slots:
-    void stopExplosionGif()
-    {
-        if (explosionGif->currentFrameNumber() == explosionGif->frameCount() - 1) {
-            explosionGif->stop();
-            explosionGif->deleteLater();
-        }
-    }
+    /**
+     * @brief Allow to serialize the plane for the debug stream.
+     * @param debug the debug stream
+     * @param plane the plane
+     * @return the debug stream appended with the plane info
+     */
+    friend QDebug operator<<(QDebug debug, const Plane *plane);
 };
 
 #endif // PLANE_H
