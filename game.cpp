@@ -34,7 +34,7 @@ Game::Game()
     createPauseWidgets();
 
     // create the backgrounds
-    gameBackground = QPixmap(":/res/game-backgrounde.png");
+    gameBackground = QPixmap(":/res/game-background.png");
     menuBackground = QPixmap(":/res/menu-background.jpg");
     if (!gameBackground || !menuBackground)
         throw QString("Background images not found");

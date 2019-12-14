@@ -17,12 +17,12 @@ private:
     /**
      * @brief The width of the window.
      */
-    static const int WIDTH = 750;
+    static const int WIDTH = 1000;
 
     /**
      * @brief The height of the window.
      */
-    static const int HEIGHT = 750;
+    static const int HEIGHT = 1000;
 
     /**
      * @brief The value for which a new enemy is spawned if it is randomly drawn.
