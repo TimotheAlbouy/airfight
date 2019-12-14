@@ -19,7 +19,6 @@ protected:
 public:
     /**
      * @brief Constructor.
-     * @param pm the pixmap of the projectile
      * @param s the shooter of the projectile
      */
     Projectile(ShootingActor *s);
