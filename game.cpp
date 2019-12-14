@@ -47,8 +47,9 @@ Game::Game()
     addItem(infoDisplay);
 
     // create the logo
-    logo = new QGraphicsPixmapItem(QPixmap(":/res/logo.png"));
-    logo->setPos(WIDTH/3.5, HEIGHT/50);
+    QPixmap logoPixmap = QPixmap(":/res/logo.png").scaled(WIDTH, HEIGHT/2, Qt::KeepAspectRatio);
+    logo = new QGraphicsPixmapItem(logoPixmap);
+    logo->setPos(WIDTH/2-logoPixmap.width()/2, HEIGHT/50);
     logo->setZValue(10);
     addItem(logo);
 
