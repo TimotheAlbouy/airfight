@@ -1,6 +1,6 @@
-# Airfight, by Timothé Albouy and Youssef El Hor
+# Airfight
 
-Qt game realized during advanced OOP course of the ENSIBS.
+Qt game realized by Timothé Albouy and Youssef El Hor during the advanced OOP course of the ENSIBS. 
 
 ## Requirements
 
