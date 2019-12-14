@@ -13,6 +13,11 @@ int main(int argc, char *argv[])
                                      "qt.accessibility*=false\n"
                                      "qt.text*=false\n"
                                      "qt.widgets*=false");
-    new Game();
+    try {
+        new Game();
+    } catch (QString e) {
+        qDebug() << e;
+    }
+
     return a.exec();
 }

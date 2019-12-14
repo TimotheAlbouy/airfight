@@ -34,8 +34,11 @@ Game::Game()
     createPauseWidgets();
 
     // create the backgrounds
-    gameBackground = QPixmap(":/res/game-background.png");
-    menuBackground = QPixmap(":/res/menu-background.jpg").scaled(WIDTH, HEIGHT, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+    gameBackground = QPixmap(":/res/game-backgrounde.png");
+    menuBackground = QPixmap(":/res/menu-background.jpg");
+    if (!gameBackground || !menuBackground)
+        throw QString("Background images not found");
+    menuBackground = menuBackground.scaled(WIDTH, HEIGHT, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 
     // create the info display
     infoDisplay = new QGraphicsSimpleTextItem();
@@ -332,14 +335,14 @@ void Game::pauseGame()
 
 void Game::resumeGame()
 {
-    // clear the focus of the widgets
-    pauseButton->clearFocus();
-    pauseWidget->clearFocus();
-    gameOverWidget->clearFocus();
-    menuWidget->clearFocus();
-
     timer->start();
     pauseWidget->hide();
+
+    // clear the focus of the widgets
+    pauseWidget->clearFocus();
+    pauseButton->clearFocus();
+    gameOverWidget->clearFocus();
+    menuWidget->clearFocus();
 }
 
 void Game::exitGame()
