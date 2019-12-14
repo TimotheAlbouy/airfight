@@ -20,12 +20,6 @@ protected:
 public:
     /**
      * @brief Constructor.
-     * @param pm the pixmap of the actor
-     * @param ss the steering speed of the actor
-     * @param h the health of the actor
-     * @param dg the dying gif of the actor
-     * @param gw the dying gif's width
-     * @param gh the dying gif's height
      * @param ms the moving speed of the actor
      */
     MovingActor(float ms);
